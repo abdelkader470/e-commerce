@@ -1,1 +1,57 @@
-<p>login works!</p>
+<form #loginForm="ngForm" (ngSubmit)="logIn(loginForm)">
+  <div class="w-50 m-auto mt-5">
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      ngModel
+      #email="ngModel"
+      required
+      email
+    />
+    <div
+      id="email"
+      class="form-text text-danger"
+      *ngIf="email.touched && email.invalid"
+    >
+      <p class="alert alert-danger py-1" *ngIf="email.errors?.['required']">
+        email is required
+      </p>
+      <p class="alert alert-danger py-1" *ngIf="email.errors?.['email']">
+        email is invalid
+      </p>
+    </div>
+  </div>
+  <div class="w-50 m-auto mt-1">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="password"
+      ngModel
+      #password="ngModel"
+      required
+    />
+    <div
+      id="password"
+      class="form-text text-danger"
+      *ngIf="password.touched && password.invalid"
+    >
+      <p class="alert alert-danger py-1" *ngIf="password.errors?.['required']">
+        password is required
+      </p>
+    </div>
+  </div>
+  <div class="w-50 m-auto mt-1">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="loginForm.invalid"
+    >
+      Login
+    </button>
+  </div>
+</form>

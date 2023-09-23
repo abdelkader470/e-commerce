@@ -1,1 +1,129 @@
-<p>register works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="signUp()">
+  <div class="w-50 m-auto mt-5">
+    <label for="name" class="form-label">Name</label>
+    <input
+      type="text"
+      class="form-control m-auto"
+      id="name"
+      placeholder="name"
+      formControlName="name"
+    />
+    <div
+      class="mt-2"
+      *ngIf="
+        registerForm.get('name')?.errors && registerForm.get('name')?.touched
+      "
+    >
+      <p
+        *ngIf="registerForm.get('name')?.getError('required')"
+        class="alert alert-danger py-1"
+      >
+        name is required
+      </p>
+    </div>
+  </div>
+  <div class="w-50 m-auto mt-1">
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control m-auto"
+      id="email"
+      placeholder="email"
+      formControlName="email"
+    />
+    <div
+      class="mt-2"
+      *ngIf="
+        registerForm.get('email')?.errors && registerForm.get('email')?.touched
+      "
+    >
+      <p
+        *ngIf="registerForm.get('email')?.getError('required')"
+        class="alert alert-danger py-1"
+      >
+        email is required
+      </p>
+      <p
+        *ngIf="registerForm.get('email')?.getError('email')"
+        class="alert alert-danger py-1"
+      >
+        email is inValid
+      </p>
+    </div>
+  </div>
+  <div class="w-50 m-auto mt-1">
+    <label for="userName" class="form-label">User Name</label>
+    <input
+      type="text"
+      class="form-control m-auto"
+      id="userName"
+      placeholder="userName"
+      formControlName="userName"
+    />
+    <div
+      class="mt-2"
+      *ngIf="
+        registerForm.get('userName')?.errors &&
+        registerForm.get('userName')?.touched
+      "
+    >
+      <p
+        *ngIf="registerForm.get('userName')?.getError('required')"
+        class="alert alert-danger py-1"
+      >
+        User Name is required
+      </p>
+      <p
+        *ngIf="registerForm.get('userName')?.getError('pattern')"
+        class="alert alert-danger py-1"
+      >
+        User Name contain space
+      </p>
+    </div>
+  </div>
+  <div class="w-50 m-auto mt-1">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control m-auto"
+      id="password"
+      placeholder="password"
+      formControlName="password"
+    />
+    <div
+      class="mt-2"
+      *ngIf="
+        registerForm.get('password')?.errors &&
+        registerForm.get('password')?.touched
+      "
+    >
+      <p
+        *ngIf="registerForm.get('password')?.getError('required')"
+        class="alert alert-danger py-1"
+      >
+        Password is required
+      </p>
+      <p
+        *ngIf="registerForm.get('password')?.getError('minlength')"
+        class="alert alert-danger py-1"
+      >
+        Password minlength is 8
+      </p>
+      <p
+        *ngIf="registerForm.get('password')?.getError('pattern')"
+        class="alert alert-danger py-1"
+      >
+        Password Must contain UpperCase, LowerCase, Number and Special Char
+      </p>
+    </div>
+  </div>
+  <div class="w-50 m-auto mt-1">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="registerForm.invalid"
+    >
+      signUp
+    </button>
+  </div>
+</form>
