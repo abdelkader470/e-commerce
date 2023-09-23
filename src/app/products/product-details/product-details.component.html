@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <img
+        [src]="productData.thumbnail"
+        class="card-img-top mt-4 border-2 rounded-3"
+        alt=""
+      />
+      <div class="d-flex justify-content-start align-items-center">
+        <div class="card mt-3">
+          <img
+            [src]="productData.images[1]"
+            class="card-img-top border-2 rounded-3"
+          />
+        </div>
+        <div class="card ms-2 mt-3">
+          <img
+            [src]="productData.images[2]"
+            class="card-img-top border-2 rounded-3"
+          />
+        </div>
+        <div class="card ms-2 mt-3">
+          <img
+            [src]="productData.images[3]"
+            class="card-img-top border-2 rounded-3"
+          />
+        </div>
+        <div class="card ms-2 mt-3">
+          <img
+            [src]="productData.images[4]"
+            class="card-img-top border-2 rounded-3"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <h3 class="mt-4">{{ productData.brand }}</h3>
+      <p class="">{{ productData.description }}</p>
+      <hr />
+      <h4>${{ productData.price }}.00</h4>
+      <hr />
+      <div *ngIf="productData.stock > 0; else out">
+        <button class="btn btn-success text-white">In Stock</button>
+      </div>
+      <ng-template #out>
+        <button class="btn btn-danger text-white">Out of Stock</button>
+      </ng-template>
+      <p class="mt-3">More Information</p>
+      <div class="d-flex">
+        <span class="badge bg-secondary-subtle text-black me-2">{{
+          productData.category
+        }}</span>
+        <span class="badge bg-secondary-subtle text-black">{{
+          productData.brand
+        }}</span>
+      </div>
+      <hr />
+      <div class="d-flex align-items-center">
+        <span
+          class="badge bg-secondary-subtle text-black me-2 fs-3 rounded-pill"
+          ><span class="me-4 fs-3 mt-1">-</span><span class="fs-3 mt-1">1</span>
+          <span class="ms-4 fs-3">+</span>
+        </span>
+        <p class="mt-3 ms-2">
+          Only 12 <span class="text-danger">items</span>Left! <br />Don't miss
+          it
+        </p>
+      </div>
+      <div class="mt-2">
+        <button class="btn btn-success me-3 rounded-pill px-5 py-2">
+          Buy Now
+        </button>
+        <button class="btn btn-outline-success rounded-pill px-5 py-2">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

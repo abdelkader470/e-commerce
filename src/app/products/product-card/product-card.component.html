@@ -1,0 +1,22 @@
+<div class="card h-100">
+  <img [src]="product.images[0]" class="card-img-top image-edit" alt="" />
+
+  <div class="card-body">
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text">{{ product.description }}</p>
+    <p class="card-text"><strong>Price:</strong> {{ product.price }}$</p>
+
+    <div class="d-flex justify-content-between align-items-center">
+      <div *ngIf="product.stock > 0; else out">
+        <button class="btn btn-success text-white">In Stock</button>
+      </div>
+      <ng-template #out>
+        <button class="btn btn-danger text-white">Out of Stock</button>
+      </ng-template>
+
+      <button class="btn btn-outline-primary" (click)="goToDetails(product.id)">
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</div>
