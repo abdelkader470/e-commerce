@@ -1,0 +1,10 @@
+.p-img {
+  position: fixed !important;
+  left: 600px !important;
+  top: 200px !important;
+}
+.p-text {
+  position: fixed !important;
+  left: 670px !important;
+  top: 420px !important;
+}

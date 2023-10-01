@@ -14,10 +14,10 @@ export class ProductCardComponent {
     private _details: ProductServiceService
   ) {}
   @Input() product!: Product;
+  addToCart() {
+    this._details.addToCart(this.product);
+  }
   goToDetails(id: number) {
     this._Router.navigate(['productDetails', id]);
-  }
-  addToCart(id: number) {
-    this._Router.navigate(['mycart', id]);
   }
 }

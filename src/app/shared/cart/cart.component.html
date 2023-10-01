@@ -1,11 +1,71 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <img
-        [src]="productDatails.thumbnail"
-        class="card-img-top mt-4 border-2 rounded-3 w-25"
-        alt=""
-      />
-    </div>
+  <div class="cart">
+    <table class="table mt-5" *ngIf="cartItems.length > 0; else noData">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td>
+            <div class="d-flex align-items-center">
+              <img
+                [src]="item.images[0]"
+                class="card-img-top image-edit me-3 w-25"
+                alt=""
+              />
+              <div>
+                <h6>{{ item.title }}</h6>
+                <p>{{ item.brand }}</p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="quantity-controls">
+              <button
+                class="btn btn-dark me-2"
+                (click)="decreaseQuantity(item)"
+              >
+                -
+              </button>
+              <span class="quantity">{{ item.quantity }}</span>
+              <button
+                class="btn btn-dark ms-2"
+                (click)="increaseQuantity(item)"
+              >
+                +
+              </button>
+            </div>
+          </td>
+          <td>
+            <div>{{ item.price * item.quantity | currency }}</div>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="removeFromCart(item)">
+              Remove
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" class="text-end">
+            <h1 class="total-price badge bg-dark p-3">
+              Total Price: {{ totalPrice | currency }}
+            </h1>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
   </div>
 </div>
+<ng-template #noData>
+  <div class="text-center">
+    <img src="../../../assets/1.png" class="p-img" alt="" />
+    <h2 class="p-text">No Items</h2>
+  </div>
+</ng-template>
