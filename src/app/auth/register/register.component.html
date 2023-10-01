@@ -118,6 +118,30 @@
     </div>
   </div>
   <div class="w-50 m-auto mt-1">
+    <label for="confirmPassword " class="form-label">confirmPassword </label>
+    <input
+      type="password"
+      class="form-control m-auto"
+      id="confirmPassword "
+      placeholder="confirmPassword "
+      formControlName="confirmPassword "
+    />
+    <div
+      class="mt-2"
+      *ngIf="
+        registerForm.get('confirmPassword')?.errors &&
+        registerForm.get('confirmPassword')?.touched
+      "
+    >
+      <p
+        *ngIf="registerForm.get('confirmPassword')?.getError('required')"
+        class="alert alert-danger py-1"
+      >
+        confirmPassword is required
+      </p>
+    </div>
+  </div>
+  <div class="w-50 m-auto mt-1">
     <button
       type="submit"
       class="btn btn-primary"

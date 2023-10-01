@@ -1,8 +1,9 @@
 import { Product } from './../../product';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import data from '../../../assets/products-list.json';
-
+// import data from '../../../assets/products-list.json';
+import { ProductServiceService } from 'src/app/product-service.service';
+ProductServiceService;
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -10,15 +11,18 @@ import data from '../../../assets/products-list.json';
 })
 export class ProductDetailsComponent {
   activId!: number;
-  products: Product[] = data;
+  products!: any;
   productData!: any;
 
-  constructor(private ActivedRout: ActivatedRoute) {}
+  constructor(
+    private ActivedRout: ActivatedRoute,
+    private _list: ProductServiceService
+  ) {}
   ngOnInit() {
     this.activId = this.ActivedRout.snapshot.params['id'];
-    this.productData = this.products.find(
-      (product) => product.id == this.activId
-    );
+    this._list.getProductDetails(this.activId).subscribe((res: any) => {
+      this.productData = res;
+    });
     console.log(this.productData);
   }
 }

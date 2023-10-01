@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from './../../product';
-import data from '../../../assets/products-list.json';
+import { ProductServiceService } from 'src/app/product-service.service';
+// import data from '../../../assets/products-list.json';
 
 @Component({
   selector: 'app-all-product',
@@ -8,5 +9,13 @@ import data from '../../../assets/products-list.json';
   styleUrls: ['./all-product.component.css'],
 })
 export class AllProductComponent {
-  products: Array<Product> = data;
+  productsList!: any;
+
+  constructor(private productservice: ProductServiceService) {}
+  ngOnInit() {
+    this.productservice.getProductList().subscribe((res: any) => {
+      this.productsList = res.products;
+      console.log(res);
+    });
+  }
 }

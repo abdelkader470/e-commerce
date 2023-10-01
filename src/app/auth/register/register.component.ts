@@ -18,11 +18,9 @@ export class RegisterComponent {
       Validators.minLength(8),
       Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[^a-zA-Zd]).+$/),
     ]),
-    confirmPassword: new FormControl(null, [
-      Validators.minLength(8),
-      Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[^a-zA-Zd]).+$/),
-    ]),
+    confirmPassword: new FormControl(null, [Validators.required]),
   });
+
   signUp() {
     console.log(this.registerForm);
   }
